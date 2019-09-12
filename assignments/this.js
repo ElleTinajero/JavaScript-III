@@ -1,5 +1,5 @@
 /* The for principles of "this";
-* in your own words. explain the four principle for the "this" keyword below.
+* //in your own words. explain the four principle for the "this" keyword below.
 *
 * 1. Window binding gives you access to the window scope or global scope. (self explanatory)
 * 2. Implicit Binding gives you access to the object after this. 
@@ -10,24 +10,41 @@
 */
 
 // Principle 1
-
 // code example for Window Binding
+function helloWorld() {
+    console.log(this)
+};
 
-const myFunction = function number(11) {
-    console.log(this);
-    return 11
-}
-
-number(11);
 
 // Principle 2
-
 // code example for Implicit Binding
+const myObject = {
+    drink: "apple juice",
+    bors: "bacon",
+    eggs: "scrambled",
+
+    breakfast() {
+        return 'I like ${this.eggs} eggs with ${this.bors} and ${this.drink}';
+    }
+}
 
 // Principle 3
-
 // code example for New Binding
+function myBreakfast(shakeChoice,eggChoice,waffleTopping) {
+    this.shakeChoice = shakeChoice;
+    this.eggChoice = eggChoice;
+    this.waffleTopping = waffleTopping;
+}
 
 // Principle 4
-
 // code example for Explicit Binding
+
+function Breakfast(attributes) {
+    this.shakeChoice = shakeChoice;
+    this.eggChoice = eggChoice;
+    this.waffleTopping = waffleTopping;
+}
+
+function child(childAttributes) {
+    Breakfast.call(this, childAttributes);
+}
