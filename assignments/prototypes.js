@@ -8,6 +8,16 @@
   Each constructor function has unique properties and methods that are defined in their block comments below:
 */
   
+
+function GameObject (gameProperties) {
+  this.createdAt = gameProperties.createdAt;
+  this.name = gameProperties.name;
+  this.dimensions = gameProperties.dimensions;
+};
+
+GameObject.prototype.destroy = function () {
+  return '${this.name} was removed from the game.';
+};
 /*
   === GameObject ===
   * createdAt
@@ -15,13 +25,32 @@
   * dimensions (These represent the character's size in the video game)
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
+//--------------------------------------------------------------------------------------------------------------
 
+function CharacterStats (characterProperties) { 
+  super(gameProperties);
+  this.healthPoints = characterProperties.healthPoints;
+  CharacterStats.prototype.takeDamage = function () {
+    return '${this.name} took damage';
+  };
+
+};
 /*
   === CharacterStats ===
   * healthPoints
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
+//----------------------------------------------------------------------------------------------------------------
+function Humanoid (humanProperties) {
+  super(characterProperties, gameProperties);
+  this.team = humanProperties.team;
+  this.weapons = humanProperties.weapons;
+  this.language = humanProperties.language;
+};
+Humanoid.prototype.greet = function () {
+  return '${this.name} offers a greeting in ${this.language}';
+};
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -32,7 +61,7 @@
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
- 
+//----------------------------------------------------------------------------------------------------------------------
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
